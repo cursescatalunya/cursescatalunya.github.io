@@ -18,7 +18,6 @@ La web és estàtica (GitHub Pages). Tot el contingut del calendari és a **`dad
 - `data`: dia de la cursa (`AAAA-MM-DD`). Si una distància es corre un altre dia, posa `"data"` dins d'aquella modalitat.
 - `mods`: una entrada per distància. `km` (número o `null` si no se sap), `dplus` (metres o `null`), `hora` (`"HH:MM"`, només si és oficial), `horaPrev:1` si l'hora és d'una edició anterior.
 - `wikiloc` + `wl`: track aproximat d'una edició anterior; la web el mostra amb el visor de Wikiloc i un avís de recorregut aproximat. `wl.n` és el títol del track (l'any que contingui es mostra com a edició).
-- `insc`: estat de les inscripcions, només si s'ha comprovat a la web oficial o a la plataforma d'inscripció: `{"estat":"oberta"|"aviat"|"tancada"|"exhaurida","data":"AAAA-MM-DD"}` (`data` = dia de la comprovació). Si no es pot comprovar, no posis el camp (la web mostra "consulta la web").
 - `provisional:1` quan la data encara no és definitiva. `webTipus:"fitxa"` quan l'enllaç no és la web oficial sinó una fitxa d'informació.
 - `lat`/`lng`: punt de sortida aproximat (inici dels tracks o centre del poble). `exact:true` només si és el punt oficial de sortida.
 

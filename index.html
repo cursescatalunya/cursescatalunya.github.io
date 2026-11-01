@@ -355,7 +355,7 @@ function card(r,dk){
   return `<a class="card" href="#cursa-${r.id}" style="${sportVar(r.esport)}">
     <div class="bib num"><b>${d.getDate()}</b><span>${MESC[d.getMonth()]}</span><em>${DIA[d.getDay()].slice(0,3)}</em></div>
     <div style="min-width:0"><span class="tag">${SPORTS[r.esport].nom}</span>${r.provisional?'<span class="prov">Data provisional</span>':''}<h3>${esc(r.nom)}</h3><div class="where">${esc(r.poble)} · ${esc(r.comarca)}${dk!=null?` <span class="dist num">a ${dk<1?'menys d\'1':Math.round(dk)} km</span>`:''}</div></div>
-    <div class="side"><div class="mods">${r.mods.map(m=>`<span class="mod num">${esc(r.esport==='backyard'?'6,706 km/volta':m.nom)}</span>`).join('')}</div><div class="hora num">${horaCard(r)}</div>${inscBadge(r)}</div>
+    <div class="side"><div class="mods">${r.mods.map(m=>`<span class="mod num">${esc(r.esport==='backyard'?'6,706 km/volta':m.nom)}</span>`).join('')}</div><div class="hora num">${horaCard(r)}</div></div>
   </a>`;
 }
 
@@ -572,7 +572,6 @@ function showDetail(r){
     <aside class="panel info">
       <dl class="kv num">
         <dt>Data</dt><dd>${longDate(r.data)}${r.provisional?' <span class="prov">provisional</span>':''}</dd>
-        <dt>Inscripcions</dt><dd>${inscBadge(r,true)}</dd>
         <dt>Sortida</dt><dd>${esc(r.lloc.replace(/, Catalunya$/,''))}${r.exact?'':' <span class="prov">aprox.</span>'}</dd>
       </dl>
       <div><div class="eyebrow" style="margin-bottom:8px">${yard?'Format':'Modalitats'}</div><div class="modsel" id="modsel"></div></div>

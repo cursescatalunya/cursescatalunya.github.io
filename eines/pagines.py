@@ -36,7 +36,7 @@ for r in races:
     if r.get('web'): ld["sameAs"] = r['web']
     page = f"""<!doctype html><html lang="ca"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title><meta name="description" content="{e(desc)}"><link rel="canonical" href="{BASE}/cursa/{r['id']}/">
-<meta property="og:title" content="{e(r['nom'])} {any_}"><meta property="og:description" content="{e(desc)}"><meta name="theme-color" content="#D4471E">
+<meta property="og:title" content="{e(r['nom'])} {any_}"><meta property="og:description" content="{e(desc)}"><meta name="theme-color" content="#D4471E"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icon-180.png">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <style>body{{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;background:#F1F3EE;color:#17201B}}main{{max-width:720px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left))}}a{{color:#B8391A}}h1{{font-size:2.2rem;line-height:1.1;margin:.2em 0}}.k{{color:#5B675F}}.b{{display:inline-block;background:#D4471E;color:#fff;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:8px;margin:6px 8px 6px 0}}.g{{background:#fff;color:#17201B;border:1.5px solid #17201B}}
 @media (prefers-color-scheme:dark){{body{{background:#111612;color:#E6EBE4}}.k{{color:#95A198}}a{{color:#F0673A}}.g{{background:#19201B;color:#E6EBE4;border-color:#E6EBE4}}}}</style></head>

@@ -7,7 +7,7 @@
 <meta property="og:title" content="Curses de Catalunya">
 <meta property="og:description" content="Totes les curses de Catalunya en un sol calendari: trail, asfalt, BTT, carretera, backyard i canicròs.">
 <meta name="theme-color" content="#D4471E">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Crect width='64' height='48' rx='6' fill='%23D4471E'/%3E%3Ctext x='32' y='33' font-family='Arial' font-weight='700' font-size='22' fill='white' text-anchor='middle'%3ECAT%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
 <title>Curses de Catalunya</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,10 +46,8 @@ h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.0
 /* top */
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.bibmark{width:44px;height:34px;border-radius:4px;background:var(--accent);position:relative;display:grid;place-items:center;color:var(--accent-ink);font-family:var(--f-display);font-weight:700;font-size:17px;flex:none}
-.pins{position:absolute;inset:0;pointer-events:none}
-.pins i{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--bg)}
-.pins i:nth-child(1){top:4px;left:4px}.pins i:nth-child(2){top:4px;right:4px}.pins i:nth-child(3){bottom:4px;left:4px}.pins i:nth-child(4){bottom:4px;right:4px}
+.bibmark{width:40px;height:40px;flex:none;display:block}
+.bibmark .t{fill:var(--ink)}.bibmark .a{fill:var(--bg)}.bibmark .b{fill:var(--accent)}
 .brand b{font-family:var(--f-display);font-weight:700;font-size:28px;letter-spacing:.01em;line-height:1;display:block}
 .brand small{display:block;color:var(--muted);font-size:13px}
 .seg{display:inline-flex;background:var(--sunk);border-radius:999px;padding:3px;gap:2px}
@@ -273,7 +271,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-si
 <div class="wrap">
   <header class="top">
     <a class="brand" href="#calendari">
-      <span class="bibmark num">CAT<span class="pins"><i></i><i></i><i></i><i></i></span></span>
+      <svg class="bibmark" viewBox="0 0 64 64" aria-hidden="true"><rect class="t" width="64" height="64" rx="14"/><rect class="a" x="13" y="16" width="38" height="13" rx="2.5"/><rect class="b" x="13" y="35" width="38" height="13" rx="2.5"/></svg>
       <span><b>Curses de Catalunya</b><small>Trail, asfalt, BTT, carretera, backyard i canicross</small></span>
     </a>
     <nav class="seg" id="viewtabs" aria-label="Vista">

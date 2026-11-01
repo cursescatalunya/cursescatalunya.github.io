@@ -133,6 +133,15 @@ h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.0
 .modbtn[aria-pressed="true"]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c);background:var(--surface)}
 .cta{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:600;padding:13px 16px;border-radius:8px;font-size:16px}
 .cta:hover{filter:brightness(1.06)}
+.insc{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;margin-top:6px;color:var(--muted)}
+.insc i{width:9px;height:9px;border-radius:50%;flex:none;background:var(--muted)}
+.insc.ok{color:var(--btt)}.insc.ok i{background:#2FA84F;box-shadow:0 0 0 3px color-mix(in srgb,#2FA84F 25%,transparent)}
+.insc.no{color:var(--carretera)}.insc.no i{background:#D93A3A;box-shadow:0 0 0 3px color-mix(in srgb,#D93A3A 25%,transparent)}
+.insc.soon{color:var(--warn)}.insc.soon i{background:#E0A31B}
+.insc.unk i{background:transparent;border:1.5px solid var(--muted)}
+.kv dd .insc{margin-top:0}.insc small{font-weight:400}
+.side .insc{justify-content:flex-end;width:100%}
+@media (max-width:560px){.side .insc{justify-content:flex-start}}
 .src{font-size:12.5px;color:var(--muted);margin-top:-6px}
 .src a{color:var(--ink)}
 .prov{display:inline-block;font-family:var(--f-body);font-size:11.5px;font-weight:600;letter-spacing:.02em;color:var(--muted);border:1px dashed var(--muted);border-radius:4px;padding:0 6px;margin-left:8px;vertical-align:2px;text-transform:none}
@@ -335,12 +344,20 @@ $('#q').addEventListener('input',e=>{st.q=e.target.value;renderHome()});
 function modHora(r,m){return m.hora?`${m.data&&m.data!==r.data?DIA[parseD(m.data).getDay()].slice(0,3)+' ':''}${m.hora} h`:'Hora per confirmar'}
 function horaCard(r){const hs=r.mods.filter(m=>m.hora&&!m.data);if(!hs.length)return'Horari per confirmar';
   const t=[...new Set(hs.map(m=>m.hora))].sort();return t.length>1?`Sortides ${t[0]}–${t.at(-1)} h`:`Sortida ${t[0]} h`}
+const INSC={oberta:['ok','Inscripcions obertes'],aviat:['soon','Inscripcions aviat'],tancada:['no','Inscripcions tancades'],exhaurida:['no','Dorsals exhaurits']};
+function inscBadge(r,full){
+  if(r.data<TODAY)return '';
+  const i=r.insc&&INSC[r.insc.estat];
+  if(!i)return full?`<div class="insc unk"><i></i><span>Estat de les inscripcions: consulta la web</span></div>`:'';
+  const d=r.insc.data?parseD(r.insc.data):null,when=d?` <small>(comprovat el ${d.getDate()} ${MESC[d.getMonth()].toLowerCase()})</small>`:'';
+  return `<div class="insc ${i[0]}"><i></i><span>${i[1]}${full?when:''}</span></div>`;
+}
 function card(r,dk){
   const d=parseD(r.data);
   return `<a class="card" href="#cursa-${r.id}" style="${sportVar(r.esport)}">
     <div class="bib num"><b>${d.getDate()}</b><span>${MESC[d.getMonth()]}</span><em>${DIA[d.getDay()].slice(0,3)}</em></div>
     <div style="min-width:0"><span class="tag">${SPORTS[r.esport].nom}</span>${r.provisional?'<span class="prov">Data provisional</span>':''}<h3>${esc(r.nom)}</h3><div class="where">${esc(r.poble)} · ${esc(r.comarca)}${dk!=null?` <span class="dist num">a ${dk<1?'menys d\'1':Math.round(dk)} km</span>`:''}</div></div>
-    <div class="side"><div class="mods">${r.mods.map(m=>`<span class="mod num">${esc(r.esport==='backyard'?'6,706 km/volta':m.nom)}</span>`).join('')}</div><div class="hora num">${horaCard(r)}</div></div>
+    <div class="side"><div class="mods">${r.mods.map(m=>`<span class="mod num">${esc(r.esport==='backyard'?'6,706 km/volta':m.nom)}</span>`).join('')}</div><div class="hora num">${horaCard(r)}</div>${inscBadge(r)}</div>
   </a>`;
 }
 
@@ -557,6 +574,7 @@ function showDetail(r){
     <aside class="panel info">
       <dl class="kv num">
         <dt>Data</dt><dd>${longDate(r.data)}${r.provisional?' <span class="prov">provisional</span>':''}</dd>
+        <dt>Inscripcions</dt><dd>${inscBadge(r,true)}</dd>
         <dt>Sortida</dt><dd>${esc(r.lloc.replace(/, Catalunya$/,''))}${r.exact?'':' <span class="prov">aprox.</span>'}</dd>
       </dl>
       <div><div class="eyebrow" style="margin-bottom:8px">${yard?'Format':'Modalitats'}</div><div class="modsel" id="modsel"></div></div>
